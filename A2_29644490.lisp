@@ -16,22 +16,26 @@
 ;; ))
 
 (defun triangle (n)
-(if (integerp n) 
+(cond
+        ((integerp n) 
         (loop for x from 1 to n
         do
         (setf number 1)
         (TERPRI)
-           (loop  for y from 1 to x
+        (loop  for y from 1 to x
         do
         (format t "~A "  number)
         (incf number)
-        )
-        )
-        (print "decimal numbers are not valid input, please enter an integer") 
-))
-      
+        )))
+        ((not (numberp n)) (print "strings are not valid input, please enter an integer") )
+        (t  (print "decimal numbers are not valid input, please enter an integer"))))
+
+
+
+(triangle "5")     
 (triangle 5.5)     
 (triangle 5)
+
 
 
 
