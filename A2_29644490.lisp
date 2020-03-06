@@ -98,33 +98,34 @@
 
 
 
+(defun isBinarySearchTree (lst)
+(setf root (car lst))
+(setf leftTreeRoot (car (cdr lst)))
+(setf rightTreeRoot (car (cdr (cdr lst))))
 
-;; (defun treeCompress (lst)
-;;     (cond 
-;;     ((null lst) lst)
-;;     ((listp (car lst) ) (treeCompress (append (car lst) (cdr lst))))
-
-;;     (t (cons (car lst) (treeCompress (cdr lst))))
-;;     )      
-;; )
-
-;; (defun is-sortedp (lst)
-;; (let ((L (treeCompress(list lst))))
-
-;; (cond ((numberp (car L))
-;; (cond ((or (null L) (null (cdr L))) t)
-;; ((< (car L) (car (cdr L))) (is-sortedp (cdr L)))
-;; ((= (car L) (car (cdr L))) (is-sortedp (cdr L)))
-;; (t nil))
-;; (is-sortedp (cdr lst)))
-;; )
-;; )
+(cond
+        ((null (car lst)) (return-from isBinarySearchTree t ))
+        ((and (numberp (car leftTreeRoot))(< root (car leftTreeRoot))) (return-from isBinarySearchTree NIL) )
+        ((and (numberp (car rightTreeRoot))(> root (car rightTreeRoot))) (return-from isBinarySearchTree NIL ) )
+        (t  (return-from isBinarySearchTree (and (isBinarySearchTree leftTreeRoot) (isBinarySearchTree rightTreeRoot)) )
+        ))
+        )
 
 
 
-;; (print (is-sortedp '(1 '(1) 4)))
+(print (isBinarySearchTree '(8 (3 (1 () ()) (6 (4 () ())( 7 () ()))) (10 (()) (14 (13) ())))))
+(print (isBinarySearchTree '(8 (10 (1 () ()) (6 (4 () ())( 7 () ()))) (10 (()) (14 (13) ())))))
+(print (isBinarySearchTree '(8 (3 (9 () ()) (6 (4 () ())( 7 () ()))) (10 (()) (14 (13) ())))))
 
-;; (print (treeCompress '(1 '(1) 4)))
+
+
+
+
+
+
+
+
+
 
 
 
