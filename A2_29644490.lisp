@@ -40,13 +40,13 @@
 
 
 ;;Question 2
-(setf P1 '(x1 y1))
-(setf P2 '(x2 y2))
+
 
 ;; regular function
 (defun distance (P1 P2)
    (print (sqrt (+ (expt (- (car P1) (car P2)) 2) (expt (- (car (cdr P1)) (car (cdr P2))) 2)))))
 
+;;test case for question 2 - regular function
 (distance (list 6 4)(list 8 2))
 
 ;;lambda function
@@ -79,6 +79,7 @@
         (t (cons (car L) (mixListNoDups (cdr L))))))
 )
 
+;;test cases for question 3
 (print (mixListNoDups (list '((n) 2 (6 h 7.8) (w f) (n) (c) n))))
 (print (mixListNoDups (list '((z f) (b a 5 3.5) 6 (7) (a) c))))
 
@@ -116,7 +117,7 @@
         )
 
 
-
+;;test cases for question 3, 1st one is a binary tree, 2nd and 3rd are not
 (print (isBinarySearchTree '(8 (3 (1 () ()) (6 (4 () ())( 7 () ()))) (10 (()) (14 (13) ())))))
 (print (isBinarySearchTree '(8 (10 (1 () ()) (6 (4 () ())( 7 () ()))) (10 (()) (14 (13) ())))))
 (print (isBinarySearchTree '(8 (3 (9 () ()) (6 (4 () ())( 7 () ()))) (10 (()) (14 (13) ())))))
@@ -186,7 +187,7 @@ do
 
 
 
-
+;;two cases for each pell number function - recursive and iterative
 (pell-recursive 6)
 (pell-recursive 8)
 (pell-iterative 10)
