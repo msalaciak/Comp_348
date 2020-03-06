@@ -86,16 +86,31 @@
 ;; question 4
 
 (defun f-l-swap (lst)
+(setf first (list (car lst)))
+(setf body (cdr lst))
+(setf swaplist (list ()))
+(setf counter 1)
+(setf counter2 1)
 
+(loop 
+for x in body
+do
+(setf counter (+ 1 counter)))
+(setf counter (- counter 1))
 
-(cond ((null lst) null)
-((null (cdr lst)) (cons (car lst) nil ))
-(t (f-l-swap (cdr lst))      )
+(loop 
+for x in body 
+do
+(if (< counter2 counter)
+(setf swaplist (append swaplist (list x))) )
+(setf counter2 (+ 1 counter2))
+(setf last x)
+)
+(append (list last) (cdr swaplist) first   )
 )
 
-)
-
-;; (print (f-l-swap '(a b c d e)))
+(print (f-l-swap '((a d) f 10 w h)))
+(print (f-l-swap '(g 6 p 10 m)))
 
 
 
@@ -121,18 +136,6 @@
 (print (isBinarySearchTree '(8 (3 (1 () ()) (6 (4 () ())( 7 () ()))) (10 (()) (14 (13) ())))))
 (print (isBinarySearchTree '(8 (10 (1 () ()) (6 (4 () ())( 7 () ()))) (10 (()) (14 (13) ())))))
 (print (isBinarySearchTree '(8 (3 (9 () ()) (6 (4 () ())( 7 () ()))) (10 (()) (14 (13) ())))))
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ;;question 7
