@@ -1,19 +1,10 @@
 ;; ASSIGNMENT 2 COMP 348
+;; Inspired by COMP 348 lectures, tutorial slides and principle of programming langauges textbook
 ;; Matthew Salaciak 29644490
-;; lisp
+;; running this entire program will output every test case / answer within the terminal
+
 
 ;;Question 1
-;; (defun triangle (x)
-;; (if (integerp x) 
-;;         (cond ((> x 0)
-;;         (print (append(triangle (- x 1))(list x)))
-;;              )         
-;;         ) 
-
-
-;;         (print   "decimal numbers are not valid input, please enter an integer")  
-
-;; ))
 
 (defun triangle (n)
 (cond
@@ -31,7 +22,7 @@
         (t  (print "decimal numbers are not valid input, please enter an integer"))))
 
 
-
+;; test cases for question 1
 (triangle "5")     
 (triangle 5.5)     
 (triangle 5)
@@ -43,13 +34,14 @@
 
 
 ;; regular function
+;; (P1 is x1 y1 P2 is x2 y2)
 (defun distance (P1 P2)
    (print (sqrt (+ (expt (- (car P1) (car P2)) 2) (expt (- (car (cdr P1)) (car (cdr P2))) 2)))))
 
 ;;test case for question 2 - regular function
-(distance (list 6 4)(list 8 2))
+(distance '(6 4) '(8 2))
 
-;;lambda function
+;;lambda function / test case
 ((lambda (P11 P22)
 (print (sqrt (+ (expt (- (car P11) (car P22)) 2) (expt (- (car (cdr P11)) (car (cdr P22))) 2))))) (list 6 4)(list 8 2))
 
@@ -109,9 +101,9 @@ do
 (append (list last) (cdr swaplist) first   )
 )
 
+;;test cases for question 4
 (print (f-l-swap '((a d) f 10 w h)))
 (print (f-l-swap '(g 6 p 10 m)))
-
 
 
 ;; question 5
@@ -138,6 +130,63 @@ do
 (print (isBinarySearchTree '(8 (3 (9 () ()) (6 (4 () ())( 7 () ()))) (10 (()) (14 (13) ())))))
 
 
+
+;;question 6
+
+;; this factorial function comes from page 194 from principle of programming language textbook
+(defun factorial (n) 
+(if (= n 0)
+1
+(* n (factorial (- n 1)))))
+
+
+(defun sin-cos-comp (x n)
+
+(setf sinx x)
+(setf cosx 1)
+(cond 
+        ((not (numberp x)) (return-from sin-cos-comp "strings are not valid input, please enter a number for x"))
+        ((not (numberp n)) (return-from sin-cos-comp "strings are not valid input, please enter a number for n"))
+        ((not (integerp n)) (return-from sin-cos-comp "decimal numbers are not valid input, please enter an integer for n"))
+        ((evenp n) 
+            (loop for exponet from 1 to n
+        do 
+            (if (oddp exponet)
+                (setf cosx (- cosx (/ (expt x (* 2 exponet)) (factorial (* 2 exponet)))))  
+                (setf cosx (+ cosx (/ (expt x (* 2 exponet)) (factorial (* 2 exponet)))))  
+            )
+        ) 
+        (return-from sin-cos-comp cosx))
+        ((and (oddp n) (and (< -10 x) (> 10 x))) 
+         (loop for exponet from 1 to n
+         do 
+            (if (oddp exponet)
+                (setf sinx (- sinx (/ (expt x (+ 1 (* 2 exponet))) (factorial (+ 1 (* 2 exponet))))))  
+                (setf sinx (+ sinx (/ (expt x (+ 1 (* 2 exponet))) (factorial (+ 1 (* 2 exponet))))))  
+            )
+        ) 
+        (return-from sin-cos-comp sinx)
+        )
+        )
+    )
+
+
+;;test cases for sin-cis-comp
+
+;;sinx function n is odd, x is between -10 and 10
+(print (sin-cos-comp 3.0 3))
+;;cosx function n is even
+(print (sin-cos-comp 3.0 2))
+;;sinx function n is odd, but x is not between -10 and 10 FAILS
+(print (sin-cos-comp 11.0 3))
+;;function rejects decimal value for n FAILS
+(print (sin-cos-comp 11.0 3.0))
+;;function rejects string values FAILS
+(print (sin-cos-comp "11.0" "3.0"))
+
+
+
+
 ;;question 7
 
 ;; recursive approach
@@ -156,7 +205,7 @@ do
      )))
   
 
-
+;; recursive approach
 (defun pell-recursive (n)
     (setf pellnumberlist '())
     (loop for x from 0 to n
@@ -167,7 +216,7 @@ do
    (print pellnumberlist) 
 )
       
-
+;; iterative approach
 (defun pell-iterative (n)
 (let* (
 (firstnum 0)
