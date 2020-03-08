@@ -1,6 +1,6 @@
 ;; ASSIGNMENT 2 COMP 348
-;; Inspired by COMP 348 lectures, tutorial slides and principle of programming langauges textbook
 ;; Matthew Salaciak 29644490
+;; Inspired by COMP 348 lectures, tutorial slides and principle of programming langauges textbook
 ;; running this entire program will output every test case / answer within the terminal
 
 
@@ -35,6 +35,7 @@
 
 ;; regular function
 ;; (P1 is x1 y1 P2 is x2 y2)
+
 (defun distance (P1 P2)
    (print (sqrt (+ (expt (- (car P1) (car P2)) 2) (expt (- (car (cdr P1)) (car (cdr P2))) 2)))))
 
@@ -107,7 +108,6 @@ do
 
 
 ;; question 5
-
 
 
 (defun isBinarySearchTree (lst)
@@ -191,7 +191,7 @@ do
 
 ;; recursive approach
 
-
+;;calculate pell numbers recursively
 (defun pellnumbers (n)
 (setf first 0)
 (setf second 1)
@@ -205,7 +205,7 @@ do
      )))
   
 
-;; recursive approach
+;; recursive approach - call pellnumbers function.
 (defun pell-recursive (n)
     (setf pellnumberlist '())
     (loop for x from 0 to n
